@@ -6,10 +6,16 @@ version 1.0
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.squareup.haha:haha:2.0.4'//使用implementation时，jar中未包含依赖包
 }
 
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'//汉字乱码问题
+}
 
 jar {
+    sourceSets.main.java.srcDirs = ['src']
+
     manifest {
         attributes 'Main-Class': 'com.hprof.bitmap.Main'
         attributes 'Manifest-Version': version
